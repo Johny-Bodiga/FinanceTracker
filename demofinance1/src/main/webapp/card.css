@@ -1,0 +1,15 @@
+.card{
+    transition: all 0.5s;
+    
+    
+}
+.card:hover{
+    transform: scale(1.10);
+}
+.btn{
+    transition: all 0.5s;
+}
+.btn:hover{
+    transform: scale(1.07);
+}
+

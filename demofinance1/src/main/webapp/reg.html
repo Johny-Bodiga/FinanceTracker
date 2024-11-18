@@ -1,0 +1,208 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       
+<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body  class="bg-light">
+        <center>
+            
+                <br/>
+                <span class="h1" style=" font-family: 'Times New Roman', Times, serif;"><center>Registration Form</center></span>
+                <br/>
+                <form class="was-validated" novalidate action="NewFile.jsp" method="POST">
+                <div class="form-floating mb-3 mt-3 w-50 ">
+                  
+                    <input type="text" class="form-control input-lg" id="amt" placeholder="Enter amt" name="amt" required>
+                    <label for="amt">First Name</label>
+                    <div class="invalid-feedback">
+                        Please provide Name.
+                      </div>
+                  </div>
+                  
+                  <div class="form-floating mb-3 mt-3 w-50">
+                  
+                    <input type="text" class="form-control input-lg" id="ln" placeholder="ln" name="ln" required>
+                    <label for="ln">Last Name</label>
+                    <div class="invalid-feedback">
+                        Please provide Name.
+                      </div>
+                  </div>
+                  
+                  <div class="form-floating mb-3 mt-3 w-50">
+                  
+                    <input type="email" class="form-control input-lg" id="mail" placeholder="mail" name="mail" required>
+                    <label for="mail">Mail Id</label>
+                    <div id="ma1" class="invalid-feedback">
+                        Please provide correct mail.
+                      </div>
+                  </div>
+                  
+                  <div class="form-floating mb-3 mt-3 w-50">
+                  
+                    <input type="text" class="form-control input-lg" id="pw1" placeholder="pw1" name="pw1" required>
+                    <label for="pw1">Password</label>
+                    <div id="pw" class="invalid-feedback">
+                        password must contain minimum 8 characters
+                      </div>
+                  </div>
+                  
+                  <div class="form-floating mb-3 mt-3 w-50">
+                  
+                    <input type="password" class="form-control input-lg" id="cp" placeholder="cp" name="cp" required>
+                    <label for="cp">Confirm Password</label>
+                    <div id="cp1" class="invalid-feedback">
+                        Please Confirm your Password.
+                      </div>
+                  </div>
+                  
+                  <div class="form-floating mb-3 mt-3 w-50">
+                  
+                    <input type="text" class="form-control input-lg" id="mb" placeholder="mb" name="mb" required>
+                    <label for="mb">Mobile</label>
+                    <div class="invalid-feedback">
+                        Please provide Mobile Number.
+                      </div>
+                  </div>
+                  <br/>
+                  <pre><button type="button" class="btn btn-primary btn-lg"  id="sub"  onclick="change()">Submit</button>                                               <button type="reset" class="btn btn-danger btn-lg" onclick="re()">Cancel</button></pre>
+                  
+            </form>
+            <div class="modal" id="myModal" >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <br/>
+        <h2>Registered Successfully</h2>
+        <br/>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <form action="NewFile.jsp">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="ch()">Close</button>
+        </form>
+      </div>
+                  </div>
+                </div>
+              </div>
+
+        </center>
+
+        <script>
+          function re() { 
+              
+            const divp=document.querySelector("#cp1");
+               const divc=document.querySelector("#pw");
+               const divm=document.querySelector("#ma1");
+            divc.style.display="block";
+            divp.style.display="block";
+            divm.style.display="block";
+           }
+            function change(){
+            	 
+                 
+               const divp=document.querySelector("#cp1");
+               const divc=document.querySelector("#pw");
+               const divm=document.querySelector("#ma1");
+               var fn=document.getElementById("amt").value;
+               var ln=document.getElementById("ln").value;
+               var pw=document.getElementById("pw1").value;
+               var cp=document.getElementById("cp").value;
+               var mb=document.getElementById("mb").value;
+               var a=document.getElementById("mail").value;
+               var m=1,p=0,l=mb.length,i=0,p1=0,flag=0,d=0,c=0,j=0,c1=0,fn1=0,ln1=0;
+            
+             if(fn.length==0)
+             fn1=1;
+             if(ln.length==0)
+             ln1=1;
+
+               var s="gmail.com";
+          for(i=0;i<a.length;i++){
+            if((a.charAt(i)>='a' && a.charAt(i)<='z')||(a.charAt(i)>='A' && a.charAt(i)<='Z')||(a.charAt(i)>='0' && a.charAt(i)<='9')||a.charAt(i)=='@')
+          {
+            if(a.charAt(i)=='@'){
+              flag=1;
+              c1=i;
+              for(j=i+1;j<a.length;j++){
+                if(a.charAt(j)!=s.charAt(j-i-1)){
+                  d=1;
+                  break;
+                }
+            }
+          }
+        }       
+          else{
+            c=1;
+            d=1;
+          break;
+          }
+          if(flag==1)
+             break;
+          }
+        
+        if(a.length-c1-1!=s.length)
+        d=1;
+        if(flag==0 || c==1 || d==1){
+          divm.style.display="block";
+        } 
+        else
+        divm.style.display="none";
+
+               if(pw.length<8){
+                p1=0;
+               divc.style.display="block";
+               }
+               else{
+                p1=1;
+            divc.style.display="none";
+            }
+               if(pw===cp){
+               p=1;
+               divp.style.display="none";
+               }
+            else{
+                p=0;
+            divp.style.display="block";
+            }
+               if(l==10)
+            {
+               for(i=0;i<l;i++){
+                   if(mb.charAt(i)>="0" && mb.charAt(i)<="9")
+                   continue;
+                   else{
+                       m=0;
+                    break;
+                   }
+               }
+            }
+            else
+            m=0;
+             // document.write(p+" "+m+" "+p1+" "+flag+" "+c+" "+d+" "+fn1+" "+ln1+" "+l);
+           
+           if(p==1 && m==1 && p1==1 && flag==1 && c==0 && d==0 && fn1==0 && ln1==0 ){
+           $("#myModal").modal({backdrop:false});
+           }
+           }
+       
+       function ch(){
+    	   var fn=document.getElementById("amt").value;
+           var ln=document.getElementById("ln").value;
+           var pw=document.getElementById("pw1").value;
+           var cp=document.getElementById("cp").value;
+           var mb=document.getElementById("mb").value;
+           var a=document.getElementById("mail").value;
+        $("#myModal").modal("hide");
+        var jspcall="NewFile.jsp?amt="+fn+"&ln="+ln+"&pw1="+pw+"&mb="+mb+"&mail="+a;
+        	window.location.href=jspcall;
+       // window.location.href = "http://localhost:8080/demofinance1/NewFile.jsp";
+       }
+           </script>
+    </body>
+</html>
